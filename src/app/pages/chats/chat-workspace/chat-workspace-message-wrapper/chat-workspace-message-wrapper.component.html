@@ -1,0 +1,16 @@
+<div class="messages-wrapper">
+  @for (group of groupedMessages(); track group.date.toISOString()) {
+    <div class="date-separator">
+      <span class="date-text">{{ getRelativeDateString(group.date) }}</span>
+    </div>
+    
+    @for (message of group.messages; track message.id) {
+      <app-chat-workspace-message
+        [message]="message"
+      ></app-chat-workspace-message>
+    }
+  }
+</div>
+<app-message-input
+  (created)="onSendMessage($event)"
+></app-message-input>

@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  padding: 16px 20px;
+  overflow-y: scroll;
+}
+
+.messages-wrapper {
+  display: grid;
+  grid-gap: 12px;
+  align-content: start;
+}
+
+.date-separator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.date-text {
+  padding: 4px 12px;
+  background: var(--dark-active);
+  border: 1px solid var(--light-color);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--light-transparent-color);
+}
