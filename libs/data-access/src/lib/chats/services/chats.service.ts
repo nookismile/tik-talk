@@ -8,7 +8,7 @@ import {
   takeUntil,
   Subject,
 } from 'rxjs';
-import { GlobalStoreService } from '@tt/shared';
+import { GlobalStoreService } from '../../shared/services/global-store.service';
 
 @Injectable({
   providedIn: 'root',

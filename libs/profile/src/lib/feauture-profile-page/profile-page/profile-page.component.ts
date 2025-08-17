@@ -4,7 +4,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import {ImgUrlPipe, SvgIconComponent} from '@tt/common-ui';
-import {ProfileService} from '@tt/profile';
+import { ProfileService } from '@tt/data-access';
 import {ProfilePostsWrapperComponent} from '../profile-posts-wrapper/profile-posts-wrapper.component';
 import {ProfileHeaderComponent} from '../../ui/profile-header/profile-header.component';
 

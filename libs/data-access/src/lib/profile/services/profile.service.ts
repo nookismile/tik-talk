@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { map, tap } from 'rxjs';
 import {Profile} from '@tt/interfaces/profile';
-import {GlobalStoreService, Pageble} from '@tt/shared';
+import { GlobalStoreService } from '../../shared/services/global-store.service';
+import { Pageble } from '@tt/interfaces/pageble.interface';
 
 @Injectable({
   providedIn: 'root',

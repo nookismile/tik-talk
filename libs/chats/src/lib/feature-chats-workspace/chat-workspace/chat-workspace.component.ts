@@ -4,7 +4,7 @@ import { ChatWorkspaceMessageWrapperComponent } from './chat-workspace-message-w
 import {ActivatedRoute, Router} from '@angular/router';
 import {filter, of, switchMap} from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import {ChatsService} from '@tt/chats';
+import { ChatsService } from '@tt/data-access';
 
 @Component({
   selector: 'app-chat-workspace',

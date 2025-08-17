@@ -24,7 +24,7 @@ import {
   Subscription,
 } from 'rxjs';
 import {MessageInputComponent} from '../../../ui/message-input/message-input.component';
-import {ChatsService} from '../../../data/services/chats.service';
+import {ChatsService} from '../../../../../../data-access/src/lib/chats/services/chats.service';
 
 @Component({
   selector: 'app-chat-workspace-message-wrapper',
