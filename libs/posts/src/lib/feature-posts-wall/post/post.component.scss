@@ -1,0 +1,44 @@
+:host {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  grid-gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--light-color);
+}
+
+.post-body {
+  display: grid;
+  grid-gap: 12px;
+}
+
+.post-author {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  color: var(--light-color);
+}
+
+.post-created-at {
+  color: var(--light-transparent-color);
+}
+
+.comment-amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comments-length {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  color: var(--primary-color);
+}
+
+.post-comments-wrapper {
+  display: grid;
+  grid-gap: 8px;
+  max-height: 150px;
+  padding: 8px 0;
+  overflow-y: scroll;
+}
