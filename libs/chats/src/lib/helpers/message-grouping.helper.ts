@@ -1,4 +1,4 @@
-import { Message, MessageGroup } from '@tt/interfaces/chats.interface';
+import { Message, MessageGroup } from '@tt/data-access/chats';
 
 export class MessageGroupingHelper {
   static groupMessagesByDate(messages: Message[]): MessageGroup[] {

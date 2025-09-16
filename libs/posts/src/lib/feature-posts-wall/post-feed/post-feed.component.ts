@@ -8,11 +8,11 @@ import {
   Renderer2,
 } from '@angular/core';
 import { auditTime, firstValueFrom, fromEvent, Subject, takeUntil } from 'rxjs';
-import type { Post } from '../../data';
-import { PostService } from '../../data';
+import type { Post } from '@tt/data-access/posts';
+import { PostService } from '@tt/data-access';
 import { PostComponent } from '../post/post.component';
 import { PostInputComponent } from '../../ui';
-import { GlobalStoreService } from '@tt/shared';
+import { GlobalStoreService } from '@tt/data-access';
 
 @Component({
   selector: 'app-post-feed',

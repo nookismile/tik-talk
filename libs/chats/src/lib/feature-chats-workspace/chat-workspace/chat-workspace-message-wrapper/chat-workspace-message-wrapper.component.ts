@@ -7,13 +7,11 @@ import {
   OnInit,
   Renderer2,
   computed,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { ChatWorkspaceMessageComponent } from './chat-workspace-message/chat-workspace-message.component';
-import {
-  Chat,
-  Message,
-  MessageGroup,
-} from '@tt/interfaces/chats.interface';
+import { Chat, Message, MessageGroup } from '@tt/data-access/chats';
 import { MessageGroupingHelper } from '../../../helpers/message-grouping.helper';
 import {
   auditTime,
@@ -33,7 +31,7 @@ import {ChatsService} from '../../../../../../data-access/src/lib/chats/services
   templateUrl: './chat-workspace-message-wrapper.component.html',
   styleUrl: './chat-workspace-message-wrapper.component.scss',
 })
-export class ChatWorkspaceMessageWrapperComponent implements OnInit, OnDestroy {
+export class ChatWorkspaceMessageWrapperComponent implements OnInit, OnDestroy, OnChanges {
   chatsService = inject(ChatsService);
   r2 = inject(Renderer2);
   hostElement = inject(ElementRef);
@@ -53,6 +51,12 @@ export class ChatWorkspaceMessageWrapperComponent implements OnInit, OnDestroy {
     this.startMessagePolling();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['chat'] && !changes['chat'].firstChange) {
+      this.startMessagePolling();
+    }
+  }
+
   ngAfterViewInit() {
     this.resizeFeed();
 
@@ -64,13 +68,10 @@ export class ChatWorkspaceMessageWrapperComponent implements OnInit, OnDestroy {
   }
 
   private startMessagePolling() {
+    this.chatsService.stopPollingMessages();
+    this.pollingSubscription?.unsubscribe();
+    
     const chatId = this.chat().id;
-    const currentUser = this.chatsService.me();
-
-    if (!currentUser) {
-      console.warn('User not loaded, skipping message polling');
-      return;
-    }
 
     this.pollingSubscription = this.chatsService
       .startPollingMessages(chatId, 3000)
@@ -83,8 +84,6 @@ export class ChatWorkspaceMessageWrapperComponent implements OnInit, OnDestroy {
         },
       });
   }
-
-
 
   getRelativeDateString(date: Date): string {
     return MessageGroupingHelper.getRelativeDateString(date);
@@ -104,12 +103,18 @@ export class ChatWorkspaceMessageWrapperComponent implements OnInit, OnDestroy {
   }
 
   async onSendMessage(messageText: string) {
-    try {
-      await firstValueFrom(
-        this.chatsService.sendMessage(this.chat().id, messageText)
-      );
-    } catch (error) {
-      console.error('Error sending message:', error);
-    }
+      this.chatsService.wsAdapter.sendMessage(
+        messageText,
+        this.chat().id
+      )
+
+
+    // try {
+    //   await firstValueFrom(
+    //     this.chatsService.sendMessage(this.chat().id, messageText)
+    //   );
+    // } catch (error) {
+    //   console.error('Error sending message:', error);
+    // }
   }
 }

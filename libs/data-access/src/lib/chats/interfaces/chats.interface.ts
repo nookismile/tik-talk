@@ -1,11 +1,11 @@
-import { Profile } from '../profile/profile.interface';
+import { Profile } from "../../profile/interfaces/profile.interface";
 
 export interface Chat {
   id: number;
   userFirst: Profile;
   userSecond: Profile;
   messages: Message[];
-  companion?: Profile;
+  companion: Profile;
 }
 
 export interface Message {
@@ -15,7 +15,7 @@ export interface Message {
   text: string;
   createdAt: string;
   isRead: boolean;
-  updatedAt: string;
+  updatedAt?: string;
   user?: Profile;
   isMine?: boolean;
 }

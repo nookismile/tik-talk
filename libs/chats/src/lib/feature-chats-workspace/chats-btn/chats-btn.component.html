@@ -10,5 +10,8 @@
     {{ chat.userFrom.firstName }} {{ chat.userFrom.lastName }}
   </div>
   <div class="medium-text">{{ chat.message ?? '...' }}</div>
+  @if (unreadCount() > 0) {
+    <span class="badge">{{ unreadCount() }}</span>
+  }
 </div>
 }

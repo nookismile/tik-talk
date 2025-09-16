@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
-import { TokenResponse } from './auth.interface';
+import { TokenResponse } from '@tt/auth';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -61,7 +61,8 @@ export class AuthService {
     this.token = res.access_token;
     this.refreshToken = res.refresh_token;
 
-    this.cookieService.set('token', this.token, { expires: 1 });
-    this.cookieService.set('refreshToken', this.refreshToken, { expires: 30 });
+    if (this.token) this.cookieService.set('token', this.token, { expires: 1 });
+    if (this.refreshToken)
+      this.cookieService.set('refreshToken', this.refreshToken, { expires: 30 });
   }
 }

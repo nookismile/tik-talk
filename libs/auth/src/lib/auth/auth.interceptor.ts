@@ -3,7 +3,7 @@ import {
   HttpInterceptorFn,
   HttpRequest,
 } from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthService } from '@tt/data-access';
 import { inject } from '@angular/core';
 import {
   BehaviorSubject,
@@ -65,7 +65,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(reqWithToken).pipe(
     catchError((error) => {
-      if (error.status === 403) {
+      if (error.status === 403 || error.status === 401) {
         return refreshAndProceed(authService, req, next);
       }
 

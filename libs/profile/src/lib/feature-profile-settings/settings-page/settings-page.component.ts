@@ -1,8 +1,8 @@
 import { Component, effect, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Profile } from "@tt/interfaces/profile";
+import { Profile } from "@tt/data-access/profile";
 import { firstValueFrom } from 'rxjs';
-import { ProfileService } from '../../data/services/profile.service';
+import { ProfileService } from '@tt/data-access';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 
 @Component({

@@ -3,6 +3,7 @@
   grid-template-columns: 32px 1fr;
   grid-gap: 16px;
   padding: 20px;
+  background: var(--dark-color);
   border: 1px solid var(--light-color);
 }
 
@@ -40,5 +41,8 @@
   grid-gap: 8px;
   max-height: 150px;
   padding: 8px 0;
-  overflow-y: scroll;
+  padding-right: 24px;
+  overflow-y: auto;
 }
+
+

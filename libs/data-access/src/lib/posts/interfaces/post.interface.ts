@@ -1,4 +1,4 @@
-import {Profile} from '../profile/profile.interface';
+import {Profile} from '../../profile/interfaces/profile.interface';
 
 // Dto - data transfer object - обьект, который передается с бэка, между сервисами и т.д.
 export interface PostCreateDto {

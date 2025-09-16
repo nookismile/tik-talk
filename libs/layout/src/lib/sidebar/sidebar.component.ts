@@ -4,7 +4,8 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import {AvatarCircleComponent, SvgIconComponent} from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/shared';
+import { ChatsService, GlobalStoreService } from '@tt/data-access';
+import { ProfileService } from '@tt/data-access';
 
 @Component({
   selector: 'app-sidebar',
@@ -24,10 +25,12 @@ import { GlobalStoreService } from '@tt/shared';
 export class SidebarComponent {
   globalStore = inject(GlobalStoreService);
   profileService = inject(ProfileService);
+  chatsService = inject(ChatsService);
 
   subscribers$ = this.profileService.getSubscribersShortList();
 
   me = this.globalStore.me;
+  unreadMessages = this.chatsService.unreadMessagesCount
 
   menuItems = [
     {
@@ -48,6 +51,11 @@ export class SidebarComponent {
   ];
 
   ngOnInit() {
+    this.chatsService.connectWs().subscribe()
+
     firstValueFrom(this.profileService.getMe());
   }
+
+  
+
 }

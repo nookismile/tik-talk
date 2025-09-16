@@ -10,6 +10,11 @@
       >
         <svg [icon]="menuItem.icon"></svg>
         <span>{{ menuItem.label }}</span>
+        @if (menuItem.label === 'Чаты' && unreadMessages(); as count) {
+          @if (count > 0) {
+            <span class="badge">{{ count }}</span>
+          }
+        }
       </a>
     </li>
   </ul>

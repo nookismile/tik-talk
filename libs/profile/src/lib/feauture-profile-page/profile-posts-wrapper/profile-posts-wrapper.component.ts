@@ -1,15 +1,13 @@
 import { Component, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { PostFeedComponent } from '@tt/posts';
 
 @Component({
   selector: 'app-profile-posts-wrapper',
   template: `
     <div class="profile-posts">
-      <!-- Здесь будет динамически загруженный PostFeedComponent -->
       <ng-container *ngIf="showPosts">
-        <!-- Временная заглушка, пока не решим проблему с циклическими зависимостями -->
-        <div class="posts-placeholder">
-          <p>Посты пользователя будут отображаться здесь</p>
-        </div>
+        <app-post-feed></app-post-feed>
       </ng-container>
     </div>
   `,
@@ -23,7 +21,8 @@ import { Component, Input } from '@angular/core';
       color: #666;
     }
   `],
-  standalone: true
+  standalone: true,
+  imports: [NgIf, PostFeedComponent]
 })
 export class ProfilePostsWrapperComponent {
   @Input() showPosts = true;

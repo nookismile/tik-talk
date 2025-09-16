@@ -1,5 +1,5 @@
 <app-avatar-circle
-  *ngIf="profile() as profile"
+  *ngIf="globalStore.me() as profile"
   class="size32"
   [avatarUrl]="profile.avatarUrl"
 >
